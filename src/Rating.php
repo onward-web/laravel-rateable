@@ -18,7 +18,7 @@ class Rating extends Model
 
     public function user()
     {
-        $userClassName = Config::get('rating.user_model');
+        $userClassName = Config::get('rateable.user_model');
 
         return $this->belongsTo($userClassName);
     }

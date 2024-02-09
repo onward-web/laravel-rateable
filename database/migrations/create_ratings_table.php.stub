@@ -14,7 +14,7 @@ class CreateRatingsTable extends Migration
 
         $ratingTableName = (new \willvincent\Rateable\Rating)->getTable();
 
-        $userClassName = Config::get('rating.user_model');
+        $userClassName = Config::get('rateable.user_model');
 
         $usersTableName =  (new $userClassName)->getTable();
 
