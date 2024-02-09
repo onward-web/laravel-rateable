@@ -38,6 +38,8 @@ class CreateRatingsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('ratings');
+         $ratingTableName = (new \willvincent\Rateable\Rating)->getTable();
+
+         Schema::drop($ratingTableName);
     }
 }
