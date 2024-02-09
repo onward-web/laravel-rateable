@@ -7,7 +7,9 @@ use Illuminate\Support\Facades\Config;
 
 class Rating extends Model
 {
-    public $fillable = ['rating','comment'];
+    public $table = RATING_TABLE_NAME;
+
+    protected $guarded = [];
 
     public function rateable()
     {
@@ -16,10 +18,7 @@ class Rating extends Model
 
     public function user()
     {
-        $userClassName = Config::get('auth.model');
-        if (is_null($userClassName)) {
-            $userClassName = Config::get('auth.providers.users.model');
-        }
+        $userClassName = Config::get('rating.user_model');
 
         return $this->belongsTo($userClassName);
     }

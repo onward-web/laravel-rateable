@@ -4,11 +4,17 @@ namespace willvincent\Rateable;
 
 use Illuminate\Support\ServiceProvider;
 use willvincent\Rateable\Commands\RateableCommand;
+use Illuminate\Support\Facades\Config;
 
 class RateableServiceProvider extends ServiceProvider
 {
     public function boot()
     {
+        if(!defined('RATING_TABLE_NAME')){
+            define('RATING_TABLE_NAME', Config::get('rating.ratings', 'ratings'));
+        }
+
+
         if ($this->app->runningInConsole()) {
             if (! class_exists('CreateRatingsTable')) {
                 $this->publishes([
