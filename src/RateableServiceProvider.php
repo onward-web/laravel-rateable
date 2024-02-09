@@ -22,9 +22,9 @@ class RateableServiceProvider extends ServiceProvider
                 ], 'migrations');
             }
 
-            // $this->publishes([
-            //     __DIR__.'/../config/rateable.php' => config_path('rateable.php'),
-            // ], 'config');
+             $this->publishes([
+                 __DIR__.'/../config/rateable.php' => config_path('rateable.php'),
+             ], 'config');
 
             // $this->commands([
             //     RateableCommand::class,
