@@ -19,7 +19,7 @@ class CreateRatingsTable extends Migration
         $usersTableName =  (new $userClassName)->getTable();
 
 
-        Schema::create($ratingTableName, function (Blueprint $table) {
+       Schema::create($ratingTableName, function (Blueprint $table) use($usersTableName) {
             $table->increments('id');
             $table->timestamps();
             $table->integer('rating');
