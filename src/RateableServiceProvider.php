@@ -11,7 +11,7 @@ class RateableServiceProvider extends ServiceProvider
     public function boot()
     {
         if(!defined('RATING_TABLE_NAME')){
-            define('RATING_TABLE_NAME', Config::get('rating.ratings', 'ratings'));
+            define('RATING_TABLE_NAME', Config::get('rateable.table_name', 'ratings'));
         }
 
 
