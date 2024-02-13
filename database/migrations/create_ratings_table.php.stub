@@ -19,17 +19,22 @@ class CreateRatingsTable extends Migration
         $usersTableName =  (new $userClassName)->getTable();
 
 
-       Schema::create($ratingTableName, function (Blueprint $table) use($usersTableName) {
+        Schema::create($ratingTableName, function (Blueprint $table) use($usersTableName) {
             $table->increments('id');
             $table->timestamps();
-            $table->integer('rating');
-            $table->text('comment')->nullable();
-            $table->tinyInteger('approved')->unsigned();
+            $table->decimal('rating', 11, 2)->unsigned();
+            $table->text('review')->nullable();
+            $table->tinyInteger('approved')->unsigned()->index('approved');
             $table->morphs('rateable');
             $table->integer('user_id')->unsigned();
-            $table->index('rateable_id');
-            $table->index('rateable_type');
+            $table->index('rateable_id', 'rateable_id');
+            $table->index('rateable_type', 'rateable_type');
             $table->foreign('user_id')->references('id')->on($usersTableName);
+        });
+
+        Schema::table($ratingTableName, function (Blueprint $table)
+        {
+            $table->index(['rating', 'approved'], 'rating_approved');
         });
     }
 

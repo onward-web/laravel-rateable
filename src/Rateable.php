@@ -29,7 +29,7 @@ trait Rateable
 
         return (!! $userClass::whereId($user_id)->count())? $user_id: Auth::id();
      }
-    
+
     public function rate($value, $comment = null, $user_id = null)
     {
         $user_id = $this->byUser($user_id);
@@ -67,7 +67,7 @@ trait Rateable
 
     public function averageRating()
     {
-        return $this->ratings()->avg('rating');
+        return $this->ratings()->where('approved', 1)->avg('rating');
     }
 
     public function sumRating()
@@ -106,7 +106,7 @@ trait Rateable
         $is_rounded = is_bool($rounded)? $rounded: false;
         if($rounded) {
             return ($quantity * $max) > 0 ? ceil(($total / ($quantity * $max)) * 100) : 0;
-        } else { 
+        } else {
             return ($quantity * $max) > 0 ? $total / (($quantity * $max) / 100) : 0;
         }
     }
