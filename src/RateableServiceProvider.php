@@ -26,7 +26,7 @@ class RateableServiceProvider extends ServiceProvider
                 ], 'migrations');
             }
 
-            if (! class_exists('CreateRatingDescriptionTable')) {
+            if (! class_exists('CreateRatingDescriptionsTable')) {
                 $this->publishes([
                     __DIR__ . '/../database/migrations/create_rating_descriptions_table.php.stub' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_rating_descriptions_table.php'),
                 ], 'migrations');
