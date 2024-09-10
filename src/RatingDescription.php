@@ -10,6 +10,8 @@ class RatingDescription extends Model
     public $timestamps = false;
     public $incrementing = false;
 
+    protected $primaryKey = 'rating_id';
+
     public $table = RATING_DESCRIPTION_TABLE_NAME;
 
     public function rating(){
