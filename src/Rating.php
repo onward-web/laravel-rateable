@@ -25,4 +25,23 @@ class Rating extends Model
 
         return $this->belongsTo($userClassName);
     }
+
+    public function newEloquentBuilder($query)
+    {
+        return new \App\Builders\BaseBuilder($query);
+    }
+
+
+    public function descriptions(){
+        return $this->hasMany(RatingDescription::class, 'rating_id', 'id');
+    }
+
+    public function description($lang = null){
+        if($lang == null){
+            $lang = sc_get_locale();
+        }
+        return $this->hasOne(RatingDescription::class, 'rating_id', 'id')->where('lang', $lang);
+    }
+
+
 }

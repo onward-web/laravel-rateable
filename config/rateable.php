@@ -2,5 +2,6 @@
 
 return [
     'user_model' => \App\Models\ShopUser::class,
-    'table_name' => 'ratings',
+    'rating_table_name' => 'ratings',
+    'rating_description_table_name' => 'rating_descriptions',
 ];
