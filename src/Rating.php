@@ -14,6 +14,15 @@ class Rating extends Model
 
     protected $guarded = [];
 
+    protected static function boot()
+    {
+        parent::boot();
+        // before delete() method call this
+        static::deleting(function ($ratingItem) {
+            $ratingItem->descriptions()->delete();
+        });
+    }
+
     public function rateable()
     {
         return $this->morphTo();
