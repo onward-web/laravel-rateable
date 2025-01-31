@@ -5,14 +5,12 @@ use Illuminate\Database\Eloquent\Model;
 use EloquentFilter\Filterable;
 class RatingDescription extends Model
 {
-    use \Jeidison\CompositeKey\CompositeKey;
-
     use Filterable;
     protected $guarded = [];
     public $timestamps = false;
     public $incrementing = false;
 
-    protected $primaryKey = ['rating_id', 'lang'];
+    protected $primaryKey = 'rating_id';
 
     public $table = RATING_DESCRIPTION_TABLE_NAME;
 
